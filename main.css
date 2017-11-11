@@ -36,6 +36,8 @@ ul{
 
 .nav__item{
     padding: 15px 20px;
+    position: relative;
+    display: inline-block;
 }
 
 .nav__logo-link,.nav__item-link{
@@ -44,11 +46,18 @@ ul{
     display: inline-block;
 }
 
+
 .nav__item-link_active,.nav__item-link:hover,.nav__logo-link:hover{
     color: #FFFFFF;
 }
 
-
+.nav__item>.nav__item-link{
+    display: inline-block;
+}
+.nav__item>.nav__item-link:hover {
+    background: black;
+    color: #FFFFFF;  
+}
 .nav__item_active{
     background: black;  
 }
