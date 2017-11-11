@@ -4,6 +4,16 @@ ul{
     padding: 0;
 }
 
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%; 
+    
+
+}
+
 .nav{
     background-color: #222222;
     display: flex;
@@ -15,12 +25,13 @@ ul{
 
 }
 
+.nav__container{
+    display: flex;
+}
+
 .nav__list{
     list-style: none;
     display: flex;
-    /* margin-top: 15px; */
-    
-    
 }
 
 .nav__item{
@@ -33,8 +44,13 @@ ul{
     display: inline-block;
 }
 
-.nav__item-link_link,.nav__item-link:hover,.nav__logo-link:hover{
+.nav__item-link_active,.nav__item-link:hover,.nav__logo-link:hover{
     color: #FFFFFF;
+}
+
+
+.nav__item_active{
+    background: black;  
 }
 
 .nav__logo-link{
@@ -45,17 +61,9 @@ ul{
 
 .nav__search{
     margin-left: auto;
-    margin-right: 50px;
-    margin-top: 3px;
+    margin-top: 5px;
 }
-
-/* .nav__logo-text:before{
-content:url(fire.png);
-/* background-image: url(fire.png); */
-/* width: 50px;
-height: 50px;
-display: inline-block;
-} */ 
+ 
 
 .nav__logo-img{
     background-image: url(fire.png);
@@ -76,7 +84,7 @@ display: inline-block;
 }
 
 .nav__logo{
-    margin: 0px 70px;
+    margin-right: 10px;
 }
 
 .nav__search-input{
@@ -102,13 +110,7 @@ display: inline-block;
 
 }
 
-.header__container{
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 90%;
-}
+
 .header__heading{
     color: #ADFF2F;
     font-size: 63px;
@@ -156,10 +158,6 @@ display: inline-block;
 .grey{
     color: #959595;
     width:80%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
     margin-top: 30px;
     margin-bottom: 50px
 }
@@ -230,16 +228,13 @@ display: inline-block;
 
 .orange__list{
     display: flex;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    
 }
 
 .orange__item{
     margin-right: 25px;
     padding: 29px;
+    width: 30%;
 }
 
 .orange__item-header{
@@ -290,14 +285,6 @@ display: inline-block;
     color:#959595;
 }
 
-.footer__container{
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 15px;
-    padding-left: 15px;
-
-}
 
 .footer{
     padding-top: 40px;
