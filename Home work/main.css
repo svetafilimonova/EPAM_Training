@@ -25,10 +25,6 @@ margin: 0;
 }
 
 
-/* .header {
-    margin-bottom: 15px;
-} */
-
 
 .header__container {
     display: flex;
@@ -38,7 +34,7 @@ margin: 0;
 
 .header__logo {
     width: 50%;
-    display: flex;
+
 
 }
 
@@ -51,9 +47,6 @@ margin: 0;
     height: 120px;
 }
 
-.header__contacts{
-    display: flex;
-}
 
 .contacts {
     display: flex;
@@ -63,22 +56,26 @@ margin: 0;
     margin-right: 10px;
     display: flex;
     position: relative;
+    align-items: center;
 }
 
 .contacts__item:after {
     content: "";
-    border-right: 1px solid #CACACA;
+    display: inline-block;
+    width: 1px;
+    height: 29px;
+    background-color: #CACACA;
 }
 
 .contacts__item:last-child:after{
-    border-right: none;
+    display: none;
 }
 
  .contacts__link {
-    display: flex;
-    align-items: center;
+
+    display: inline-block;
     margin-right: 10px;
-    height: 29px;
+    height: 35px;
     
  }
 
@@ -306,9 +303,9 @@ margin: 0;
 }
 .hamburger__elem {
     display: block;
-    width: 46px;
-    height: 6px;
-    border-radius: 3px;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
     background-color: #2992D0;
     margin-bottom: 5px;
 }
@@ -343,10 +340,11 @@ margin: 0;
     display: block;
 }
 
-@media all and (max-width: 768px) and (min-width: 480px) {
+@media all and (max-width: 768px) {
     .header__contacts {display:none;}
     .nav{border-top: none;
-         width: 40%;}
+         width: 33%;}
+    .nav__container { width: auto;}
     .nav__menu {display: none;}
     .hamburger{display: block;}
     .header {display: flex; 
@@ -355,9 +353,29 @@ margin: 0;
              margin-bottom: 0;
              /* padding: 0px 15px; */
             }
-    .header__container {justify-content: space-around;
-                        width: 65%;}
+    .header__container {justify-content: space-between;
+                        width: 55%;}
     .header__logo {width: 40%;}
     .main__content{flex-direction:column;}
     .container {margin: 0;}
+}
+
+@media all and (max-width: 630px) {
+    .header {flex-direction: column;}
+    .header__container {width: 90%;
+                        justify-content: space-between;
+                        }
+    .header__logo { width:55%;
+                    display: flex;
+                    justify-content: flex-end;}
+    .header__logo-pic {max-width: 100%;}
+    .nav__container {width: 100%;
+                    padding-bottom: 15px;}
+    .nav { width: auto;}
+    .main__heading h1 {
+        font-size: 50px;
+    }
+    .main__content {width: 95%;}
+
+
 }
