@@ -1,0 +1,33 @@
+.animated {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    border-radius: 50%;
+    background: -webkit-radial-gradient(yellow 20%, lightgoldenrodyellow 10%, darkblue 70%);
+    animation-name: change;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    /* animation-direction: alternate-reverse;  */
+    transition: .5s all;
+}
+
+@keyframes change {
+    25% {
+        border-radius: 0;
+        background: -webkit-linear-gradient(lightpink, lemonchiffon, powderblue);
+    }
+    50% {
+        width: 400px;
+        height: 400px;
+        transform: skew(40deg, 40deg);
+    }
+    75% {
+        transform: rotateZ(180deg);
+    }
+    100% {
+        background: -webkit-linear-gradient(left, red, orange, yellow, green, blue, indigo, violet);
+    }
+}
