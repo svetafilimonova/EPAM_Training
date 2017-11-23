@@ -1,0 +1,27 @@
+.menu {
+    list-style: none;
+    width: 100px;
+    position: absolute;
+    top:-214px;
+    
+}
+
+.menu__item {
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+    border-bottom: 2px solid grey;
+  
+    
+
+}
+
+.menu__item:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.menu__item:last-child {
+    border-radius: 0 0 5px 5px;
+    border-bottom: none;
+
+}
