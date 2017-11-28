@@ -1,21 +1,29 @@
+body {
+    box-sizing: border-box;
+}
+
 .blue {
     background-color: #A0DFD1;
-    width: 400px;
+    width: 396px;
     height: 200px;
     border: 1px solid #7AB6A8;
     position: relative;
+    box-sizing: border-box;
+
 }
 
 .white {
     width: 370px;
-    height: 170px;
     border: 1px solid #7AB6A8;
     color: #7AB6A8;
-    padding: 5px;
+    padding: 10px;
     position: absolute;
     background-color: white;
-    top: 18px;
-    left: 17px;
+    /* top: 10px;
+    left: 11px; */
+    top: 5%;
+    left: 3%;
+    box-sizing: border-box;
 }
 
 .white p {
@@ -27,11 +35,12 @@
     background: -moz-linear-gradient(top, #ffd600 0%, #fcc826 100%); 
     background: -webkit-linear-gradient(top, #ffd600 0%,#fcc826 100%); 
     padding: 10px;
-    width: 360px;
+    width: 368px;
     position: absolute;
     top: 0;
     left: 0;
     font-size: 17px;
+    box-sizing: border-box;
 }
 
 .header:after {
