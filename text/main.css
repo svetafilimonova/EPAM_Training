@@ -18,10 +18,31 @@
     left: 17px;
 }
 
+.white p {
+    margin-top: 50px;
+}
+
 .header {
     color: black;
     background: -moz-linear-gradient(top, #ffd600 0%, #fcc826 100%); 
     background: -webkit-linear-gradient(top, #ffd600 0%,#fcc826 100%); 
-    padding: 5px;
-    width: 100%;
+    padding: 10px;
+    width: 360px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 17px;
+}
+
+.header:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 12px solid #FFC200;
+    top: 39px;
+    left: 8px;
 }
