@@ -1,4 +1,4 @@
-.menu {
+/* *.menu {
     list-style: none;
     width: 100px;
     position: absolute;
@@ -24,4 +24,13 @@
     border-radius: 0 0 5px 5px;
     border-bottom: none;
 
+} */
+
+/* 
+.menu__item:last-child:hover {
+    box-shadow: 10px 10px 10px 10px #B3E4FC;
+} */
+
+.hide {
+    top: -16px;
 }

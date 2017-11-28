@@ -1,0 +1,27 @@
+.blue {
+    background-color: #A0DFD1;
+    width: 400px;
+    height: 200px;
+    border: 1px solid #7AB6A8;
+    position: relative;
+}
+
+.white {
+    width: 370px;
+    height: 170px;
+    border: 1px solid #7AB6A8;
+    color: #7AB6A8;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
+    top: 18px;
+    left: 17px;
+}
+
+.header {
+    color: black;
+    background: -moz-linear-gradient(top, #ffd600 0%, #fcc826 100%); 
+    background: -webkit-linear-gradient(top, #ffd600 0%,#fcc826 100%); 
+    padding: 5px;
+    width: 100%;
+}
