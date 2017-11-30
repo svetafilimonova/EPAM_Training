@@ -82,5 +82,4 @@ console.log(whiteDivHeight + " white, " + blueDivHeight + " blue, ");
             blueDiv.style.height = newBlueDivHeight + "px";
         }
 
-
 };
