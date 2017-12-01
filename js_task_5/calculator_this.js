@@ -97,5 +97,5 @@ var calc = new Calculator;
 // console.log(calc.check());
 console.log(calc.add(4)(5));
 // console.log(calc.subtract(4));
-console.log(calc.div(4));
+console.log(calc.div(3));
 console.log(calc.check());
