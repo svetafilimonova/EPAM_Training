@@ -48,6 +48,61 @@
 
 // ******************************THIS**********************************************
 
+// function Calculator() {
+  
+//   var result = 0;
+  
+//   this.add = function(a) {
+//      result += a;
+//     var func = function(b){
+//       return result = b + a ;
+//     };
+//     return func;
+//   },
+
+
+//   this.subtract =  function(a){
+//     result -= a;
+//     var func = function(b) {
+//     return result = a - b;
+//     };
+//     return func;
+//      },
+
+//   this.mult =  function(a){
+//     result *= a;
+//     var func = function(b) {
+//     return result = a * b;
+//     };
+//     return func;
+//     },
+
+//   this.div =  function(a){
+//     result /= a;
+//     var func = function(b) {
+//     return result = a / b;
+//     };
+//     return func;
+//     },
+  
+
+//   this.check = function(){
+//     return result;
+//   }
+// }
+
+// var calc = new Calculator;
+
+// // console.log(calc.add(4));
+// // console.log(calc.check());
+// // console.log(calc.add(4)(5));
+// // console.log(calc.subtract(4));
+// console.log(calc.div(5)(3));
+// console.log(calc.mult(5)(3));
+// console.log(calc.check());
+
+// ****************************Version 2***************************
+
 function Calculator() {
   
   var result = 0;
@@ -95,7 +150,8 @@ var calc = new Calculator;
 
 // console.log(calc.add(4));
 // console.log(calc.check());
-console.log(calc.add(4)(5));
+// console.log(calc.add(4)(5));
 // console.log(calc.subtract(4));
-console.log(calc.div(4));
+console.log(calc.div(5)(3));
+console.log(calc.mult(5)(3));
 console.log(calc.check());
