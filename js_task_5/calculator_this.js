@@ -152,6 +152,10 @@ var calc = new Calculator;
 // console.log(calc.check());
 // console.log(calc.add(4)(5));
 // console.log(calc.subtract(4));
+<<<<<<< HEAD
 console.log(calc.div(5)(3));
 console.log(calc.mult(5)(3));
+=======
+console.log(calc.div(3));
+>>>>>>> 2dff8d8586e20aecf618dbc12fb0e018cea99a81
 console.log(calc.check());
