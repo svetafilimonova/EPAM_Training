@@ -41,6 +41,7 @@ function Calculator() {
     }
   };
   
+  
   var calculator = new Calculator;
 
 
