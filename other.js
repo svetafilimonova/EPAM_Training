@@ -1,3 +1,5 @@
+var myCalcs = [];
+var calcCounter = 0;
 var Calculator = function(){
     
     var result = 0;
@@ -46,16 +48,23 @@ var Calculator = function(){
   
   
  
-  var operands = ["",""];
-  var currOperands = 0;
-  var currentFunc = null;
-  var isOperator = true;
+  // var operands = ["",""];
+  // var currOperands = 0;
+  // var currentFunc = null;
+  // var isOperator = true;
 
   function createCalc() {
 
-    var myCalc = new Calculator();
-    // var calculator = new Calculator;
-
+    var operands = ["",""];
+    var currOperands = 0;
+    var currentFunc = null;
+    var isOperator = true;
+    
+    myCalcs.push(new Calculator());
+    // var myCalc = new Calculator();
+    //we got +1 calc now
+    calcCounter++;
+    var myCalc = myCalcs[calcCounter-1];
     
     // var anotherCalc = new Calculator();
     // myCalcs.push(new Calculator());
