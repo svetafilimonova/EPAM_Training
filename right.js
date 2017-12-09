@@ -153,9 +153,16 @@ var Calculator = function () {
             calcBtns.className = 'btn cancel';
           } else if (btnNames[btnCounter].type === 'operation') {
             calcBtns.className = 'btn ops';
+          };
             
             switch (calcBtns.innerHTML) {
-              case '+':
+                case 'CE':
+                calcBtns.classList.add('clear_op');
+                break;
+                case 'C':
+                calcBtns.classList.add('clear');
+                break;
+                case '+':
                 calcBtns.classList.add('sum');
                 break;
                 case '-':
@@ -172,10 +179,8 @@ var Calculator = function () {
                 break;
                 case '.':
                 calcBtns.classList.add('decimal');
-                
+                break;
             };
-  
-          }
   
           calcBtns.type = "button";
           calcRow.appendChild(calcBtns);
@@ -229,6 +234,102 @@ var Calculator = function () {
           myDisplay.value = currentValue;
           this.operands = [currentValue, ""];
           // operands = ["", ""];
+          break;
+          case "btn ops subtr":
+          if (this.isOperator){
+            if (this.operands[0] !== "" && this.operands[1] !== "" ){
+              this.currentFunc = this.subtract(this.operands[0])(this.operands[1]);
+              currentValue = this.getResult();
+              currentValue = this.currentFunc;
+              myDisplay.value = currentValue;
+              this.operands = [currentValue, ""];
+              this.currentFunc =  this.subtract(this.operands[0]);
+              
+            } else {
+              if(this.operands[0] !== ""){
+                this.currentFunc = this.subtract(this.operands[0]);
+              }
+            }
+
+            myDisplay.value += e.target.innerHTML;
+            this.currOperands = 1;
+            this.isOperator = false;
+          }
+          break;
+          case "btn ops multiply":
+          if (this.isOperator){
+            if (this.operands[0] !== "" && this.operands[1] !== "" ){
+              this.currentFunc = this.mult(this.operands[0])(this.operands[1]);
+              currentValue = this.getResult();
+              currentValue = this.currentFunc;
+              myDisplay.value = currentValue;
+              this.operands = [currentValue, ""];
+              this.currentFunc =  this.mult(this.operands[0]);
+              
+            } else {
+              if(this.operands[0] !== ""){
+                this.currentFunc = this.mult(this.operands[0]);
+              }
+            }
+
+            myDisplay.value += e.target.innerHTML;
+            this.currOperands = 1;
+            this.isOperator = false;
+          }
+          break;
+          case "btn ops divide":
+          if (this.isOperator){
+            if (this.operands[0] !== "" && this.operands[1] !== "" ){
+              this.currentFunc = this.div(this.operands[0])(this.operands[1]);
+              currentValue = this.getResult();
+              currentValue = this.currentFunc;
+              myDisplay.value = currentValue;
+              this.operands = [currentValue, ""];
+              this.currentFunc =  this.div(this.operands[0]);
+              
+            } else {
+              if(this.operands[0] !== ""){
+                this.currentFunc = this.div(this.operands[0]);
+              }
+            }
+
+            myDisplay.value += e.target.innerHTML;
+            this.currOperands = 1;
+            this.isOperator = false;
+          }
+          break;
+          case "btn ops divide":
+          if (this.isOperator){
+            if (this.operands[0] !== "" && this.operands[1] !== "" ){
+              this.currentFunc = this.div(this.operands[0])(this.operands[1]);
+              currentValue = this.getResult();
+              currentValue = this.currentFunc;
+              myDisplay.value = currentValue;
+              this.operands = [currentValue, ""];
+              this.currentFunc =  this.div(this.operands[0]);
+              
+            } else {
+              if(this.operands[0] !== ""){
+                this.currentFunc = this.div(this.operands[0]);
+              }
+            }
+
+            myDisplay.value += e.target.innerHTML;
+            this.currOperands = 1;
+            this.isOperator = false;
+          }
+          break;
+          case "btn cancel clear":
+          myDisplay.value = "0";
+          this.operands = ['', ''];
+          this.currOperands = 0;
+          this.currentFunc = 0;
+          this.isOperator = true;
+          break;
+          case "btn cancel clear_op":
+          myDisplay.value = "0";
+          this.operands[1] = "0";
+          break;
       }
     }.bind(this));
 
