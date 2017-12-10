@@ -10,7 +10,7 @@ var Calculator = function () {
       return func;
     },
 
-
+// К остальным не нужен parseFloat они и так приводятся к числу
     this.subtract = function (a) {
       result -= a;
       var func = function (b) {
@@ -30,7 +30,12 @@ var Calculator = function () {
     this.div = function (a) {
       result /= a;
       var func = function (b) {
-        return result = a / b;
+        if (parseFloat(b) === 0) {
+          return result = "Не дели на 0!";
+        } else {
+          return result = a / b;
+        }
+        
       };
       return func;
     },
@@ -39,7 +44,7 @@ var Calculator = function () {
     this.getResult = function () {
       return result;
     },
-
+// Рисуем калькулятор
     this.init = function () {
       var wrapper = document.querySelector('.wrapper');
       this.calc = document.createElement('div');
@@ -129,6 +134,7 @@ var Calculator = function () {
       var numOfRows = 5;
       var btnsInRow = 4;
       var btnCounter = 0;
+      // лучше не придумала чем добавить счетчик
       for(var i = 0; i < numOfRows; i++){
         var calcRow = document.createElement('div');
         calcRow.className = "calc__row";
@@ -142,11 +148,8 @@ var Calculator = function () {
 
         for(var j = 0; j < btnsInRow; j++) {
           var calcBtns = document.createElement('button');
-          // calcBtns.className = "btn";
-  
-          calcBtns.innerHTML = btnNames[btnCounter].title; // CE
-  
-          // ************************** number or big or operation
+          calcBtns.innerHTML = btnNames[btnCounter].title; 
+
           if (btnNames[btnCounter].type === 'number') {
             calcBtns.className = 'btn number';
           } else if (btnNames[btnCounter].type === 'cancel') {
@@ -191,6 +194,7 @@ var Calculator = function () {
 
     this.calc.addEventListener('click', function(e) {
       if (!e.target.classList.contains('btn')) return;
+      // если это не кнопка -  ничего не делаем
     
       var btnClass = e.target.className;
       var myDisplay = e.target.parentNode.parentNode.firstChild;
@@ -198,7 +202,7 @@ var Calculator = function () {
     
       switch (btnClass) {
         case "btn number": 
-          if (myDisplay.value == 0) {
+          if (myDisplay.value === "0") {
             myDisplay.value = e.target.innerHTML;
           } else {
             myDisplay.value += e.target.innerHTML;
@@ -291,29 +295,7 @@ var Calculator = function () {
               if(this.operands[0] !== ""){
                 this.currentFunc = this.div(this.operands[0]);
               }
-            }
-
-            myDisplay.value += e.target.innerHTML;
-            this.currOperands = 1;
-            this.isOperator = false;
           }
-          break;
-          case "btn ops divide":
-          if (this.isOperator){
-            if (this.operands[0] !== "" && this.operands[1] !== "" ){
-              this.currentFunc = this.div(this.operands[0])(this.operands[1]);
-              currentValue = this.getResult();
-              currentValue = this.currentFunc;
-              myDisplay.value = currentValue;
-              this.operands = [currentValue, ""];
-              this.currentFunc =  this.div(this.operands[0]);
-              
-            } else {
-              if(this.operands[0] !== ""){
-                this.currentFunc = this.div(this.operands[0]);
-              }
-            }
-
             myDisplay.value += e.target.innerHTML;
             this.currOperands = 1;
             this.isOperator = false;
@@ -330,10 +312,28 @@ var Calculator = function () {
           myDisplay.value = "0";
           this.operands[1] = "0";
           break;
+          case "btn ops decimal":
+          if(myDisplay.value.toString().indexOf(".") === -1 && myDisplay.value === "0"){
+            myDisplay.value += e.target.innerHTML;
+            // this.operands[this.currOperands] += e.target.innerHTML;
+            this.operands[0] = myDisplay.value;
+            this.isOperator = true;
+
+          } else if (this.operands[0].toString().indexOf(".") === -1  && this.operands[1] === ""){
+              myDisplay.value += e.target.innerHTML;
+              this.operands[0] += e.target.innerHTML;
+              
+  
+          } else if ( this.operands[1] !== "" && this.operands[1].toString().indexOf(".") === -1){
+            myDisplay.value += e.target.innerHTML;
+            this.operands[1] += e.target.innerHTML;
+        }
+        break;
       }
     }.bind(this));
 
-    return this.calc;
+    return this.calc; 
+    // ???
   },
 
   this.operands = ['', ''];
@@ -344,6 +344,7 @@ var Calculator = function () {
 
 
 var allCalcs = [];
+// Сохраняем все экземпляры калькуляторов
 
 function initialize(){
   var firstCalc = new Calculator();
@@ -351,6 +352,7 @@ function initialize(){
   allCalcs.push(firstCalc);
 
 };
+// Функция рисует калькуляторыб вызывая метод init и сохраняет их в массив
 
 document.addEventListener("DOMContentLoaded", initialize);
 var addCalcBtn = document.getElementById('add');
