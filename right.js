@@ -66,6 +66,10 @@ var Calculator = function () {
           type: 'cancel'
         },
         {
+          title: '+/-',
+          type: 'negative'
+        },
+        {
           title: '7',
           type: 'number'
         },
@@ -141,7 +145,7 @@ var Calculator = function () {
         this.calc.appendChild(calcRow);
     
         if (i === 0) {
-            btnsInRow = 2;
+            btnsInRow = 3;
         } else {
             btnsInRow = 4;
         };
@@ -156,6 +160,8 @@ var Calculator = function () {
             calcBtns.className = 'btn cancel';
           } else if (btnNames[btnCounter].type === 'operation') {
             calcBtns.className = 'btn ops';
+          } else if (btnNames[btnCounter].type === 'negative') {
+            calcBtns.className = 'btn ops negative';
           };
             
             switch (calcBtns.innerHTML) {
@@ -199,6 +205,7 @@ var Calculator = function () {
       var btnClass = e.target.className;
       var myDisplay = e.target.parentNode.parentNode.firstChild;
       var currentValue = 0;
+      
     
       switch (btnClass) {
         case "btn number": 
@@ -240,25 +247,26 @@ var Calculator = function () {
           // operands = ["", ""];
           break;
           case "btn ops subtr":
-          if (this.isOperator){
-            if (this.operands[0] !== "" && this.operands[1] !== "" ){
-              this.currentFunc = this.subtract(this.operands[0])(this.operands[1]);
-              currentValue = this.getResult();
-              currentValue = this.currentFunc;
-              myDisplay.value = currentValue;
-              this.operands = [currentValue, ""];
-              this.currentFunc =  this.subtract(this.operands[0]);
-              
-            } else {
-              if(this.operands[0] !== ""){
-                this.currentFunc = this.subtract(this.operands[0]);
+            if (this.isOperator){
+              if (this.operands[0] !== "" && this.operands[1] !== "" ){
+                this.currentFunc = this.subtract(this.operands[0])(this.operands[1]);
+                currentValue = this.getResult();
+                currentValue = this.currentFunc;
+                myDisplay.value = currentValue;
+                this.operands = [currentValue, ""];
+                this.currentFunc =  this.subtract(this.operands[0]);
+                
+              } else {
+                if(this.operands[0] !== ""){
+                  this.currentFunc = this.subtract(this.operands[0]);
+                }
               }
-            }
 
-            myDisplay.value += e.target.innerHTML;
-            this.currOperands = 1;
-            this.isOperator = false;
-          }
+              myDisplay.value += e.target.innerHTML;
+              this.currOperands = 1;
+              this.isOperator = false;
+            }
+          
           break;
           case "btn ops multiply":
           if (this.isOperator){
@@ -329,6 +337,19 @@ var Calculator = function () {
             this.operands[1] += e.target.innerHTML;
         }
         break;
+        case "btn ops negative":
+        if (this.operands[0] !== "0" && this.operands[1] === "") {
+          // myDisplay.value = "-";
+          this.operands[0] = "-" + myDisplay.value;
+          myDisplay.value = this.operands[0];
+        } else if (this.operands[0] !== ""  && this.operands[1] !== ""){
+          // var secondOp = this.operands[1].length;
+          // для вывода минуса второго операнда
+          
+          this.operands[1] = "-" + this.operands[1];
+          // myDisplay.value += "-" + this.operands[1];
+        }
+        break;
       }
     }.bind(this));
 
@@ -336,9 +357,10 @@ var Calculator = function () {
     // ???
   },
 
-  this.operands = ['', ''];
+  // this.operands = ['', ''];
+  this.operands = ['0', ''];
   this.currOperands = 0;
-  this.currentFunc = 0;
+  this.currentFunc = 0; 
   this.isOperator = true;
 };
 
