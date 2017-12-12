@@ -10,7 +10,7 @@ var Calculator = function () {
       return func;
     },
 
-// К остальным не нужен parseFloat они и так приводятся к числу
+    // К остальным не нужен parseFloat они и так приводятся к числу
     this.subtract = function (a) {
       result -= a;
       var func = function (b) {
@@ -35,7 +35,7 @@ var Calculator = function () {
         } else {
           return result = a / b;
         }
-        
+
       };
       return func;
     },
@@ -44,7 +44,7 @@ var Calculator = function () {
     this.getResult = function () {
       return result;
     },
-// Рисуем калькулятор
+    // Рисуем калькулятор
     this.init = function () {
       var wrapper = document.querySelector('.wrapper');
       this.calc = document.createElement('div');
@@ -56,7 +56,7 @@ var Calculator = function () {
       display.type = "text";
       display.value = "0";
       this.calc.appendChild(display);
-      
+
       var btnNames = [{
           title: 'CE',
           type: 'cancel'
@@ -138,21 +138,20 @@ var Calculator = function () {
       var numOfRows = 5;
       var btnsInRow = 4;
       var btnCounter = 0;
-      // лучше не придумала чем добавить счетчик
-      for(var i = 0; i < numOfRows; i++){
+      for (var i = 0; i < numOfRows; i++) {
         var calcRow = document.createElement('div');
         calcRow.className = "calc__row";
         this.calc.appendChild(calcRow);
-    
+
         if (i === 0) {
-            btnsInRow = 3;
+          btnsInRow = 3;
         } else {
-            btnsInRow = 4;
+          btnsInRow = 4;
         };
 
-        for(var j = 0; j < btnsInRow; j++) {
+        for (var j = 0; j < btnsInRow; j++) {
           var calcBtns = document.createElement('button');
-          calcBtns.innerHTML = btnNames[btnCounter].title; 
+          calcBtns.innerHTML = btnNames[btnCounter].title;
 
           if (btnNames[btnCounter].type === 'number') {
             calcBtns.className = 'btn number';
@@ -163,101 +162,101 @@ var Calculator = function () {
           } else if (btnNames[btnCounter].type === 'negative') {
             calcBtns.className = 'btn ops negative';
           };
-            
-            switch (calcBtns.innerHTML) {
-                case 'CE':
-                calcBtns.classList.add('clear_op');
-                break;
-                case 'C':
-                calcBtns.classList.add('clear');
-                break;
-                case '+':
-                calcBtns.classList.add('sum');
-                break;
-                case '-':
-                calcBtns.classList.add('subtr');
-                break;
-                case '=':
-                calcBtns.classList.add('result');
-                break;
-                case '*':
-                calcBtns.classList.add('multiply');
-                break;
-                case '/':
-                calcBtns.classList.add('divide');
-                break;
-                case '.':
-                calcBtns.classList.add('decimal');
-                break;
-            };
-  
+
+          switch (calcBtns.innerHTML) {
+            case 'CE':
+              calcBtns.classList.add('clear_op');
+              break;
+            case 'C':
+              calcBtns.classList.add('clear');
+              break;
+            case '+':
+              calcBtns.classList.add('sum');
+              break;
+            case '-':
+              calcBtns.classList.add('subtr');
+              break;
+            case '=':
+              calcBtns.classList.add('result');
+              break;
+            case '*':
+              calcBtns.classList.add('multiply');
+              break;
+            case '/':
+              calcBtns.classList.add('divide');
+              break;
+            case '.':
+              calcBtns.classList.add('decimal');
+              break;
+          };
+
           calcBtns.type = "button";
           calcRow.appendChild(calcBtns);
           btnCounter++;
+        };
+
       };
 
-    };
+      this.calc.addEventListener('click', function (e) {
+        if (!e.target.classList.contains('btn')) return;
+        // если это не кнопка -  ничего не делаем
 
-    this.calc.addEventListener('click', function(e) {
-      if (!e.target.classList.contains('btn')) return;
-      // если это не кнопка -  ничего не делаем
-    
-      var btnClass = e.target.className;
-      var myDisplay = e.target.parentNode.parentNode.firstChild;
-      var currentValue = 0;
-      
-    
-      switch (btnClass) {
-        case "btn number": 
-          if (myDisplay.value === "0") {
-            myDisplay.value = e.target.innerHTML;
-          } else {
-            myDisplay.value += e.target.innerHTML;
-          }
-          this.operands[this.currOperands] += e.target.innerHTML;
-          this.isOperator = true;
-          break;
-    
-          case "btn ops sum":
-          if (this.isOperator){
-            if (this.operands[0] !== "" && this.operands[1] !== "" ){
-              this.currentFunc = this.add(this.operands[0])(this.operands[1]);
-              currentValue = this.getResult();
-              currentValue = this.currentFunc;
-              myDisplay.value = currentValue;
-              this.operands = [currentValue, ""];
-              this.currentFunc =  this.add(this.operands[0]);
-              
+        var btnClass = e.target.className;
+        var myDisplay = e.target.parentNode.parentNode.firstChild;
+        var currentValue = 0;
+
+
+        switch (btnClass) {
+          case "btn number":
+            if (myDisplay.value === "0") {
+              myDisplay.value = e.target.innerHTML;
             } else {
-              if(this.operands[0] !== ""){
-                this.currentFunc = this.add(this.operands[0]);
-              }
+              myDisplay.value += e.target.innerHTML;
             }
+            this.operands[this.currOperands] += e.target.innerHTML;
+            this.isOperator = true;
+            break;
 
-            myDisplay.value += e.target.innerHTML;
-            this.currOperands = 1;
-            this.isOperator = false;
-          }
-          break;
-          case "btn ops result" : 
-          this.currentFunc(this.operands[1]);
-          currentValue = this.getResult();
-          myDisplay.value = currentValue;
-          this.operands = [currentValue, ""];
-          // operands = ["", ""];
-          break;
+          case "btn ops sum":
+            if (this.isOperator) {
+              if (this.operands[0] !== "" && this.operands[1] !== "") {
+                this.currentFunc = this.add(this.operands[0])(this.operands[1]);
+                currentValue = this.getResult();
+                currentValue = this.currentFunc;
+                myDisplay.value = currentValue;
+                this.operands = [currentValue, ""];
+                this.currentFunc = this.add(this.operands[0]);
+
+              } else {
+                if (this.operands[0] !== "") {
+                  this.currentFunc = this.add(this.operands[0]);
+                }
+              }
+
+              myDisplay.value += e.target.innerHTML;
+              this.currOperands = 1;
+              this.isOperator = false;
+            }
+            break;
+          case "btn ops result":
+            this.currentFunc(this.operands[1]);
+            currentValue = this.getResult();
+            myDisplay.value = currentValue;
+            this.operands = [currentValue, ""];
+            // operands = ["", ""];
+            break;
           case "btn ops subtr":
-            if (this.isOperator){
-              if (this.operands[0] !== "" && this.operands[1] !== "" ){
+            if (this.isOperator) {
+              if (this.operands[0] !== "" && this.operands[1] !== "") {
                 this.currentFunc = this.subtract(this.operands[0])(this.operands[1]);
                 currentValue = this.getResult();
                 currentValue = this.currentFunc;
                 myDisplay.value = currentValue;
                 this.operands = [currentValue, ""];
-                this.currentFunc =  this.subtract(this.operands[0]);
-                
+                this.currentFunc = this.subtract(this.operands[0]);
+
               } else {
-                if(this.operands[0] !== ""){
+                if (this.operands[0] !== "") {
                   this.currentFunc = this.subtract(this.operands[0]);
                 }
               }
@@ -266,101 +265,99 @@ var Calculator = function () {
               this.currOperands = 1;
               this.isOperator = false;
             }
-          
-          break;
+
+            break;
           case "btn ops multiply":
-          if (this.isOperator){
-            if (this.operands[0] !== "" && this.operands[1] !== "" ){
-              this.currentFunc = this.mult(this.operands[0])(this.operands[1]);
-              currentValue = this.getResult();
-              currentValue = this.currentFunc;
-              myDisplay.value = currentValue;
-              this.operands = [currentValue, ""];
-              this.currentFunc =  this.mult(this.operands[0]);
-              
-            } else {
-              if(this.operands[0] !== ""){
+            if (this.isOperator) {
+              if (this.operands[0] !== "" && this.operands[1] !== "") {
+                this.currentFunc = this.mult(this.operands[0])(this.operands[1]);
+                currentValue = this.getResult();
+                currentValue = this.currentFunc;
+                myDisplay.value = currentValue;
+                this.operands = [currentValue, ""];
                 this.currentFunc = this.mult(this.operands[0]);
+
+              } else {
+                if (this.operands[0] !== "") {
+                  this.currentFunc = this.mult(this.operands[0]);
+                }
               }
+
+              myDisplay.value += e.target.innerHTML;
+              this.currOperands = 1;
+              this.isOperator = false;
             }
-
-            myDisplay.value += e.target.innerHTML;
-            this.currOperands = 1;
-            this.isOperator = false;
-          }
-          break;
+            break;
           case "btn ops divide":
-          if (this.isOperator){
-            if (this.operands[0] !== "" && this.operands[1] !== "" ){
-              this.currentFunc = this.div(this.operands[0])(this.operands[1]);
-              currentValue = this.getResult();
-              currentValue = this.currentFunc;
-              myDisplay.value = currentValue;
-              this.operands = [currentValue, ""];
-              this.currentFunc =  this.div(this.operands[0]);
-              
-            } else {
-              if(this.operands[0] !== ""){
+            if (this.isOperator) {
+              if (this.operands[0] !== "" && this.operands[1] !== "") {
+                this.currentFunc = this.div(this.operands[0])(this.operands[1]);
+                currentValue = this.getResult();
+                currentValue = this.currentFunc;
+                myDisplay.value = currentValue;
+                this.operands = [currentValue, ""];
                 this.currentFunc = this.div(this.operands[0]);
-              }
-          }
-            myDisplay.value += e.target.innerHTML;
-            this.currOperands = 1;
-            this.isOperator = false;
-          }
-          break;
-          case "btn cancel clear":
-          myDisplay.value = "0";
-          this.operands = ['', ''];
-          this.currOperands = 0;
-          this.currentFunc = 0;
-          this.isOperator = true;
-          break;
-          case "btn cancel clear_op":
-          myDisplay.value = "0";
-          this.operands[1] = "0";
-          break;
-          case "btn ops decimal":
-          if(myDisplay.value.toString().indexOf(".") === -1 && myDisplay.value === "0"){
-            myDisplay.value += e.target.innerHTML;
-            // this.operands[this.currOperands] += e.target.innerHTML;
-            this.operands[0] = myDisplay.value;
-            this.isOperator = true;
 
-          } else if (this.operands[0].toString().indexOf(".") === -1  && this.operands[1] === ""){
+              } else {
+                if (this.operands[0] !== "") {
+                  this.currentFunc = this.div(this.operands[0]);
+                }
+              }
+              myDisplay.value += e.target.innerHTML;
+              this.currOperands = 1;
+              this.isOperator = false;
+            }
+            break;
+          case "btn cancel clear":
+            myDisplay.value = "0";
+            this.operands = ['', ''];
+            this.currOperands = 0;
+            this.currentFunc = 0;
+            this.isOperator = true;
+            break;
+          case "btn cancel clear_op":
+            myDisplay.value = "0";
+            this.operands[1] = "0";
+            break;
+          case "btn ops decimal":
+            if (myDisplay.value.toString().indexOf(".") === -1 && myDisplay.value === "0") {
+              myDisplay.value += e.target.innerHTML;
+              // this.operands[this.currOperands] += e.target.innerHTML;
+              this.operands[0] = myDisplay.value;
+              this.isOperator = true;
+
+            } else if (this.operands[0].toString().indexOf(".") === -1 && this.operands[1] === "") {
               myDisplay.value += e.target.innerHTML;
               this.operands[0] += e.target.innerHTML;
-              
-  
-          } else if ( this.operands[1] !== "" && this.operands[1].toString().indexOf(".") === -1){
-            myDisplay.value += e.target.innerHTML;
-            this.operands[1] += e.target.innerHTML;
-        }
-        break;
-        case "btn ops negative":
-        if (this.operands[0] !== "0" && this.operands[1] === "") {
-          // myDisplay.value = "-";
-          this.operands[0] = "-" + myDisplay.value;
-          myDisplay.value = this.operands[0];
-        } else if (this.operands[0] !== ""  && this.operands[1] !== ""){
-          // var secondOp = this.operands[1].length;
-          // для вывода минуса второго операнда
-          
-          this.operands[1] = "-" + this.operands[1];
-          // myDisplay.value += "-" + this.operands[1];
-        }
-        break;
-      }
-    }.bind(this));
 
-    return this.calc; 
-    // ???
-  },
 
-  // this.operands = ['', ''];
+            } else if (this.operands[1] !== "" && this.operands[1].toString().indexOf(".") === -1) {
+              myDisplay.value += e.target.innerHTML;
+              this.operands[1] += e.target.innerHTML;
+            }
+            break;
+          case "btn ops negative":
+            if (this.operands[0] !== "0" && this.operands[1] === "") {
+              this.operands[0] = "-" + myDisplay.value;
+              myDisplay.value = this.operands[0];
+            } else if (this.operands[0] !== "" && this.operands[1] !== "") {
+              var secondOp = this.operands[1].length;
+              // для вывода минуса второго операнда
+              var toStr = myDisplay.value.substring(0, (myDisplay.value.length - secondOp));
+
+              this.operands[1] = "-" + this.operands[1];
+              myDisplay.value = toStr + "(" + this.operands[1] + ")";
+            }
+            break;
+        }
+      }.bind(this));
+
+    },
+
+    // this.operands = ['', ''];
   this.operands = ['0', ''];
   this.currOperands = 0;
-  this.currentFunc = 0; 
+  this.currentFunc = 0;
   this.isOperator = true;
 };
 
@@ -368,13 +365,13 @@ var Calculator = function () {
 var allCalcs = [];
 // Сохраняем все экземпляры калькуляторов
 
-function initialize(){
+function initialize() {
   var firstCalc = new Calculator();
   firstCalc.init();
   allCalcs.push(firstCalc);
 
 };
-// Функция рисует калькуляторыб вызывая метод init и сохраняет их в массив
+// Функция рисует калькуляторы вызывая метод init и сохраняет их в массив
 
 document.addEventListener("DOMContentLoaded", initialize);
 var addCalcBtn = document.getElementById('add');
