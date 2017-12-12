@@ -1,17 +1,20 @@
-function debounce(func,time){
-    // console.log(1);
+function debounce(func, time) {
+    var timerId = null;
 
-    return function(){
-        var timerId = setTimeout(func,time);
+    return function () {
+        if (timerId) {
+            clearTimeout(timerId)
+        }
+        timerId = setTimeout(func, time);
+
     };
-    clearTimeout(timerId);
 };
 
 
 // debounce(someFunc,5000);
 
-function someFunc(){
-    console.log(2);
+function someFunc() {
+    console.log("click");
 };
 
 
@@ -20,19 +23,15 @@ function someFunc(){
 var btn = document.querySelector(".btn");
 
 console.log(btn);
-btn.addEventListener("click",debounce(someFunc,3000));
+btn.addEventListener("click", debounce(someFunc, 2000));
 
 
-function g(){
+function g() {
     return 10;
 }
 
 f('123', g());
 
-function f(a,b){
-    return a+b;
+function f(a, b) {
+    return a + b;
 }
-
-
-
-
