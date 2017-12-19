@@ -1,0 +1,14 @@
+.main__header {
+    color: lightsteelblue;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 30%;
+}
+
+.list {
+    width:300px;
+    border: 2px solid lightgray;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
