@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UI todo</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1 class="header">Your todos</h1>
+        <div class="todo">
+            <input type="text" class="todo__input" placeholder="Enter your task">
+            <ul class="todo__list">
+                <li class="todo__item">
+                    <label for="completed">
+                        <input type="checkbox" name="completed" id="completed" value="1" class="check">
+                        <div class="check__fake"></div>
+                    </label>
+                    <p class="todo__text">ТЕКСТддлывывывывывывы</p>
+                    <span class="close-btn"></span>
+                </li>
+                <li class="todo__item">
+                    <label for="completed1">
+                        <input type="checkbox" name="completed1" id="completed1" value="1" class="check">
+                        <div class="check__fake"></div>
+                    </label>
+                    <p class="todo__text">ТЕКСТддлывывывывывывы</p>
+                    <span class="close-btn"></span>
+                </li>
+            </ul>
+            <div class="todo__ctrl-panel">
+                <span class="todo__counter">item left</span>
+                <button class="btn btn__all">All</button>
+                <button class="btn">Active</button>
+                <button class="btn">Completed</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

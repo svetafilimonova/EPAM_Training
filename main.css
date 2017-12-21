@@ -1,14 +1,158 @@
-.main__header {
+body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
     color: lightsteelblue;
+    font-size: 57px;
+    text-align: center;
+    
 }
 
 .wrapper {
     margin: 0 auto;
-    width: 30%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.list {
-    width:300px;
-    border: 2px solid lightgray;
-    box-shadow: 10px 10px 5px #aaaaaa;
+
+.todo {
+    width:550px;
+    border: 1px solid lightgray;
+    box-shadow: 0px 7px 36px lightgray;
 }
+
+.todo__input {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 30px;
+    color: lightsteelblue;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    outline: none;
+}
+
+::-webkit-input-placeholder {
+    color: lightgray;
+}
+
+.todo__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.todo__item {
+    border-bottom: 1px solid lightgray;
+    padding: 15px 25px;
+    font-size: 24px;
+    color: lightsteelblue;
+    font-weight: 600;
+    position: relative;
+    
+    
+}
+
+.todo__text {
+    margin: 0;
+    display: inline-block;
+    
+}
+
+.completed {
+text-decoration: line-through;
+}
+
+.close-btn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    display: none;
+}
+
+.close-btn::before, .close-btn::after {
+    content: "";
+    width: 15px;
+    border: 2px solid rgb(214, 142, 158);
+    position: absolute;
+    border-radius: 15px
+}
+
+.close-btn::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+    right: 10px;
+}
+
+.close-btn::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: 1px;
+}
+
+.todo__item:hover .close-btn {
+    display: block;
+}
+
+.check {
+    display: none;
+}
+
+.check__fake {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    border: 1px solid lightgray;
+    margin-right: 15px;
+    
+}
+
+.check__fake::after {
+    content: '✔';
+    position: absolute;
+    top: -14px;
+    left: -1px;
+    font-size: 1.2em;
+    color: #7dc5ae;
+    display: none;
+    /* transition: all .2s; */
+}
+
+.check:checked + .check__fake::after {
+    display: block;
+}
+
+.todo__ctrl-panel {
+    padding: 15px 20px;
+    display: flex;
+
+}
+
+.btn{
+    background-color: transparent;
+    border: none;
+    border: 1px solid lightsteelblue;
+    border-radius: 8px;
+    margin-right: 10px;
+    outline: none;
+    padding: 6px 10px;
+
+}
+
+.btn__all {
+    margin-left: auto;
+}
+
