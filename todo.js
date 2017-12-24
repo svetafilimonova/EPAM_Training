@@ -3,6 +3,7 @@ const input = document.querySelector(".todo__input");
 const todoList = document.querySelector(".todo__list");
 const panel = document.querySelector(".todo__ctrl-panel");
 const counter = document.querySelector('.todo__counter');
+const tickAll = document.querySelector('.btn__tick');
 let taskCounter = 0;
 let taskStorage = [];
 let getStorage = localStorage.getItem('taskStorage');
@@ -20,6 +21,22 @@ function addToStorage(value) {
     completed: false,
     content: value
   });
+  localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
+};
+// Ставим галочку на всех задачах
+function makeAllCompleted(taskArr) {
+  taskArr.map(function (elem) {
+    elem.completed = !elem.completed;
+    return elem;
+  });
+  let allCompleted = taskStorage.every(function (elem) {
+    return elem.completed;
+  });
+  if (allCompleted) {
+    tickAll.style.color = '#7dc5ae';
+  } else {
+    tickAll.style.color = 'lightgrey';
+  }
   localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
 };
 
@@ -72,6 +89,7 @@ function deleteCompletedTasks(someArr) {
     return !elem.completed;
   });
   localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
+  tickAll.style.color = 'lightgrey';
 }
 // Рисует задачу
 function renderTask(task) {
@@ -244,6 +262,13 @@ wrapper.addEventListener('click', function (e) {
     elemClassList.contains('show')) return;
   const input = wrapper.querySelector('.todo__edit.show');
   if (input) input.classList.remove('show');
+});
+
+// Обрабатываем нажатие на кнопку с галочкой
+tickAll.addEventListener('click', function (e) {
+  if (!taskStorage.length) return;
+  makeAllCompleted(taskStorage);
+  renderAllTasks(taskStorage);
 });
 
 // Отображаем все задачи при перезагрузке страницы
