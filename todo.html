@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,23 @@
     <link rel="stylesheet" href="main.css">
     <title>Todo List</title>
 </head>
+
 <body>
     <div class="wrapper">
         <h1 class="header">Your todos</h1>
         <div class="todo">
             <input type="text" class="todo__input" placeholder="Enter your task">
-            <ul class="todo__list">
-            </ul>
-            <div class="todo__ctrl-panel"></div>
+            <ul class="todo__list"></ul>
+            <div class="todo__ctrl-panel">
+                <span class="todo__counter"></span>
+                <button class="btn btn__all">All</button>
+                <button class="btn btn__active">Active</button>
+                <button class="btn btn__completed">Completed</button>
+                <button class="btn btn__delete">Delete completed</button>
+            </div>
         </div>
-        
     </div>
     <script src="todo.js"></script>
 </body>
+
 </html>

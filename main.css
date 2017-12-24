@@ -1,6 +1,10 @@
-body {
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html {
+    height: 100%;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
 }
 
 * {
@@ -11,7 +15,6 @@ body {
     color: #A2C4EC;
     font-size: 57px;
     text-align: center;
-    
 }
 
 .wrapper {
@@ -20,11 +23,11 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 100%;
 }
 
-
 .todo {
-    width:550px;
+    width: 550px;
     border: 1px solid lightgray;
     box-shadow: 0px 7px 36px lightgray;
 }
@@ -32,10 +35,12 @@ body {
 .todo__input {
     width: 100%;
     padding: 10px 20px;
-    font-size: 30px;
+    font-size: 24px;
     color: lightsteelblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: none;
-    border-bottom: 2px solid lightgray;
+    font-weight: 600;
+    border-bottom: 1px solid lightgray;
     outline: none;
 }
 
@@ -56,18 +61,17 @@ body {
     color: lightsteelblue;
     font-weight: 600;
     position: relative;
-    
-    
 }
 
 .todo__text {
     margin: 0;
     display: inline-block;
-    
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 .completed {
-text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 .close-btn {
@@ -80,7 +84,8 @@ text-decoration: line-through;
     display: none;
 }
 
-.close-btn::before, .close-btn::after {
+.close-btn::before,
+.close-btn::after {
     content: "";
     width: 15px;
     border: 2px solid rgb(214, 142, 158);
@@ -117,7 +122,6 @@ text-decoration: line-through;
     position: relative;
     border: 1px solid lightgray;
     margin-right: 15px;
-    
 }
 
 .check__fake::after {
@@ -131,17 +135,20 @@ text-decoration: line-through;
     /* transition: all .2s; */
 }
 
-.check:checked + .check__fake::after {
+.check:checked+.check__fake::after {
     display: block;
 }
 
 .todo__ctrl-panel {
     padding: 15px 20px;
     display: flex;
-
 }
 
-.btn{
+.todo__ctrl-panel.hide {
+    display: none;
+}
+
+.btn {
     background-color: transparent;
     border: none;
     border: 1px solid lightsteelblue;
@@ -152,12 +159,12 @@ text-decoration: line-through;
     cursor: pointer;
     transition: .5s;
     color: rgb(64, 78, 107);
-
 }
 
 .btn:hover {
-    background-color:  lightsteelblue;
+    background-color: lightsteelblue;
 }
+
 .btn__all {
     margin-left: auto;
 }
@@ -166,14 +173,23 @@ text-decoration: line-through;
     color: rgb(64, 78, 107);
 }
 
-.edit {
+.todo__edit {
     width: 100%;
     height: 100%;
-    padding: 10px 20px;
-    border: 1px solid lightgray;
+    padding: 10px 20px 10px 60px;
+    border: none;
     outline: none;
     color: lightsteelblue;
     font-size: 24px;
-    border-radius: 10px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+}
 
+.todo__edit.show {
+    display: block;
 }
