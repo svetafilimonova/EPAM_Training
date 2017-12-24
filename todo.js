@@ -4,13 +4,12 @@ const todoList = document.querySelector(".todo__list");
 const panel = document.querySelector(".todo__ctrl-panel");
 const counter = document.querySelector('.todo__counter');
 let taskCounter = 0;
-// let taskStorage = (JSON.parse(taskStorage)) ? [localStorage.getItem('taskStorage',JSON.parse(taskStorage)) : [];
 let taskStorage = [];
 let getStorage = localStorage.getItem('taskStorage');
 let filteredTasks = [];
-
 taskStorage = getStorage ? JSON.parse(getStorage) : [];
 
+// Генерирует id в миллисикундах в виде строки
 function generateId() {
   return Date.now().toString();
 };
@@ -24,6 +23,7 @@ function addToStorage(value) {
   localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
 };
 
+// Меняет статус дела с выполненного на невыполненное и наоборот
 function changeState(taskId) {
   taskStorage = taskStorage.map(function (elem) {
     if (elem.id === taskId) {
@@ -34,18 +34,20 @@ function changeState(taskId) {
   localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
 };
 
+// Отбирает все выполненные задачи
 function showCompletedTasks(sortedArray) {
   filteredTasks = taskStorage.filter(function (elem) {
     return elem.completed;
   });
 };
 
+// Отбирает все активные задачи
 function showActiveTasks(sortedArray) {
   filteredTasks = taskStorage.filter(function (elem) {
     return !elem.completed;
   });
 };
-
+// Считает сколько активных задач
 function updatetaskCounter() {
   let completedTask = taskStorage.filter(function (elem) {
     return !elem.completed;
@@ -53,6 +55,7 @@ function updatetaskCounter() {
   return taskCounter = completedTask.length;
 }
 
+// Выводит на страницу счетчик задач
 function updateCounter() {
   taskCounter = updatetaskCounter();
 
@@ -61,16 +64,16 @@ function updateCounter() {
   } else {
     counter.innerHTML = taskCounter + " item left";
   }
-
 }
 
+// Удаляет задачи которые выполнены
 function deleteCompletedTasks(someArr) {
   taskStorage = taskStorage.filter(function (elem) {
     return !elem.completed;
   });
   localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
 }
-
+// Рисует задачу
 function renderTask(task) {
   let li = document.createElement("li");
   let label = document.createElement("label");
@@ -109,6 +112,7 @@ function renderTask(task) {
   todoList.appendChild(li);
 }
 
+// Отображаем панель с кнопками если массив задач не пустой
 function displayPanel() {
   if (!taskStorage.length) {
     panel.classList.add('hide');
@@ -117,6 +121,7 @@ function displayPanel() {
   }
 };
 
+// Рисуем все задачи сразу
 function renderAllTasks(taskArr) {
   todoList.innerHTML = "";
 
@@ -128,6 +133,7 @@ function renderAllTasks(taskArr) {
   displayPanel();
 };
 
+// Удаляем задачу при нажатии на крестик
 function deleteTask(id, elem) {
   taskStorage = taskStorage.filter(function (elem) {
     return elem.id !== id;
@@ -137,7 +143,7 @@ function deleteTask(id, elem) {
 };
 
 
-
+// Добавляем задачу при нажатии на Enter
 input.addEventListener("keyup", function (e) {
   if (e.keyCode !== 13) return;
   if (input.value === "") return;
@@ -151,6 +157,7 @@ input.addEventListener("keyup", function (e) {
   input.value = "";
 });
 
+// Обработка нажатия на чек-бокс и крестик
 todoList.addEventListener("click", function (e) {
   const target = e.target;
 
@@ -170,11 +177,10 @@ todoList.addEventListener("click", function (e) {
   }
 });
 
-// *****************************Editing on double click*****************************
+//Редактируем задачу при двойном щелчке на текст или на элемент списка
 
 todoList.addEventListener('dblclick', function (e) {
   const elem = e.target;
-  // if(!elem.classList.contains("todo__text")) return;
 
   if (elem.classList.contains('todo__text') ||
     elem.classList.contains('todo__item')) {
@@ -191,12 +197,9 @@ todoList.addEventListener('dblclick', function (e) {
   } else {
     return;
   }
-  // const li = elem.closest('li');
-  // const input = li.querySelector('.todo__edit');
-
-
 });
 
+// Сохраняем изменения при редактировании
 todoList.addEventListener('keyup', function (e) {
   const elem = e.target;
   if (!elem.classList.contains('todo__edit')) return;
@@ -214,8 +217,9 @@ todoList.addEventListener('keyup', function (e) {
     taskText.innerText = value;
     task.content = value;
   }
-})
+});
 
+// Обрабатываем нажатие на кнопки на панели
 panel.addEventListener("click", function (e) {
   const elem = e.target;
 
@@ -230,20 +234,17 @@ panel.addEventListener("click", function (e) {
   } else if (elem.classList.contains('btn__delete')) {
     deleteCompletedTasks(taskStorage);
     renderAllTasks(taskStorage);
-
   }
-
 });
 
+// При нажатии вне задачи, которая редактируется, фокус с текущего инпута уберется, сам инпут будет невидим, появится элемент списка
 wrapper.addEventListener('click', function (e) {
   const elemClassList = e.target.classList;
   if (elemClassList.contains('todo__edit') &&
     elemClassList.contains('show')) return;
-
   const input = wrapper.querySelector('.todo__edit.show');
-
   if (input) input.classList.remove('show');
-})
+});
 
-
+// Отображаем все задачи при перезагрузке страницы
 document.addEventListener('DOMContentLoaded', renderAllTasks(taskStorage));
