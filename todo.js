@@ -234,6 +234,7 @@ todoList.addEventListener('keyup', function (e) {
   if (value) {
     taskText.innerText = value;
     task.content = value;
+    localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
   }
 });
 
